@@ -1,0 +1,67 @@
+body{
+	background-size: 100%;
+	font-family: Courier New;
+	background-image: url(pakaian.jpg);
+
+}
+
+#datapembeli{
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	background-color: rgb(206, 220, 224);
+}
+#metodepembayaran{
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	
+}
+
+#kasir{ 
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+
+}
+#debit{
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+
+}
+
+#dbt:hover{
+	opacity: 0.4;
+			
+}
+#cash:hover{
+	opacity: 0.4;
+		
+}
+
+#btn :hover{
+	opacity: 0.6;
+}
+
+#smpn :hover{
+	opacity: 0.6;
+}
+
+#ttldbt :hover{
+	opacity: 0.6;
+}
+
+#svdbt :hover{
+	opacity: 0.6;
+}
+
+#totalnotacash :hover{
+	opacity: 0.6;
+}
+#bank :hover{
+	opacity: 0.6;

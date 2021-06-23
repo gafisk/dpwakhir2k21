@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Kasir</title>
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body>
+
+	<div id="datapembeli">
+		<table>
+			<tr>
+				<td> <label for="tanggal" style="font-weight: bold; font-size: 30px;"> Tanggal</label> </td>
+				<td> <input type="date" name="tanggal" id="tanggal" style="width: 200px; height: 30px; font-size: 22px; font-weight: bold;"> </td>
+			</tr>
+			<tr>
+				<td> <label for="nama" style="font-weight: bold; font-size: 30px;"> Nama </label> </td>
+				<td> <input type="text" name="username" id="username" style="width: 200px; height: 30px; font-size: 28px; font-weight: bold;"> </td>
+			</tr>
+			<tr>
+				<td> <label for="alamat" style="font-weight: bold; font-size: 30px;"> Alamat </label> </td>
+				<td> <input type="text" name="alamat" id="alamat" style="width: 200px; height: 30px; font-size: 28px; font-weight: bold;"> </td>
+			</tr>
+			<tr>
+				<td> <label for="telp" style="font-weight: bold; font-size: 30px;"> No Telp </label}> </td>
+				<td> <input type="number" name="telp" id="telp" style="width: 200px; height: 30px; font-size: 28px; font-weight: bold;"> </td>
+			</tr>
+			<tr>
+				<td id="btn"  colspan="2" style="text-align: center;">
+					<button type="button" onclick="kemetode()" style="width: 150px; height: 30px; font-size: 22px; font-weight: bold; cursor: pointer; background-color: rgb(152, 201, 201); "> Selanjutnya </button>
+				</td>
+			</tr>
+		</table>
+	</div>
+
+
+	<div id="metodepembayaran" style="display: none;">
+		<button id="dbt" type="button" onclick="kedebit()" style="font-size: 40px; cursor: pointer; padding: 5px; border-radius: 50px; background-color: rgb(152, 201, 201);"> DEBIT </button>
+		<button id="cash" type="button" onclick="kecash()" style="font-size: 40px; cursor: pointer; padding: 5px; border-radius: 50px; background-color: rgb(152, 201, 201);"> CASH </button>
+	</div>
+
+
+	<div id="debit" style="display: none; background-color: rgb(206, 220, 224);">
+		<table>
+			<tr>
+				<td colspan="2"> <h2 style="text-align: center; font-weight: bold;"> Pembayaran Debit </h2> </td>
+			</tr>
+			<tr>
+				<td><label for="barang" style="font-weight: bold; font-size: 30px;"> Nama Barang </lebel></td>
+				<td><input type="text" name="barang" id="barangdebit" style="width: 200px; height: 30px; font-size: 28px; font-weight: bold;"></td>
+			</tr>
+			<tr>
+				<td><label for="jumlah" style="font-weight: bold; font-size: 30px;"> Jumlah Barang </lebel></td>
+				<td><input type="number" name="jumlah" id="jumlahdebit" value="1" style="width: 200px; height: 30px; font-size: 28px; font-weight: bold;"></td>
+			</tr>
+			<tr>
+				<td><label for="diskon" style="font-weight: bold; font-size: 30px;"> Diskon </lebel></td>
+				<td> <input type="number" name="diskon" id="diskondebit" style="width: 200px; height: 30px; font-size: 28px; font-weight: bold;"></td>
+			</tr>
+		</table>
+		
+		<table>
+			<tr>
+				<td id="svdbt" colspan="3" align="center"> <button type="button" onclick="savedebit()" style="width: 100%; height: 30px; font-size: 22px; font-weight: bold; background-color: rgb(152, 201, 201);"> Simpan </button></td>
+			</tr>
+			<tr>
+				<td id="ttldbt" colspan="3" align="center"><button  type="button" onclick="totaldebit()" style="width: 100%; height: 30px; font-size: 22px; font-weight: bold; background-color: rgb(152, 201, 201);"> Total </button></td>
+			</tr>
+			<tr id="bank">
+				<td><button type="button" onclick="kartubca()" style="width: 150px; height: 30px; font-size: 22px; font-weight: bold; background-color: rgb(152, 201, 201);"> BCA </button></td>
+				<td><button type="button" onclick="kartubri()" style="width: 150px; height: 30px; font-size: 22px; font-weight: bold; background-color: rgb(152, 201, 201);"> BRI </button></td>
+				<td><button type="button" onclick="kartumandiri()" style="width: 150px; height: 30px; font-size: 22px; font-weight: bold; background-color: rgb(152, 201, 201);"> MANDIRI </button></td>
+			</tr>
+		</table>
+
+		<table style="font-size: 28px; font-weight: bold;">
+			<tr>
+				<th> Nama </th>
+				<th> Jumlah </th>
+				<th> Harga </th>
+			</tr>
+			<tr>
+				<td id="namabarangdebit"> 1.  </td>
+				<td id="jumlahbarangdebit"> 0 </td>
+				<td id="hargabarangdebit"> Rp. 000 </td>
+			</tr>
+			<tr>
+				<th colspan="2" style="text-align: left;"> Total Harga </th>
+				<td id="totalbarangdebit"> Rp. 000 </td>
+			</tr>
+			<tr>
+				<th colspan="2" style="text-align: left; text-decoration: underline;"> Potongan </th>
+				<td id="diskonbarangdebit" style="text-decoration: underline;"> Rp. 000 </td>
+			</tr>
+			<tr>
+				<th colspan="2" style="text-align: left; text-decoration: underline;"> Harus Dibayar </th>
+				<td id="sisabarangdebit" style="text-decoration: underline;"> Rp. 000 </td>
+			</tr>
+		</table>
+	</div>
+
+
+	<div id="notabca" style="display: none; font-weight: bold;font-size: 20px;">
+		<h2> TOKO UTM </h2>
+		<table style="border: 1px solid black; background-color: rgb(206, 220, 224);">
+			<tr>
+				<td> Tanggal </td>
+				<td id="tanggalpembelibca" colspan="2"></td>
+			</tr>
+			<tr>
+				<td> Nama </td>
+				<td id="namapembelibca" colspan="2"></td>
+			</tr>
+			<tr>
+				<td> Alamat </td>
+				<td id="alamatpembelibca" colspan="2"></td>
+			</tr>
+			<tr>
+				<td> No Telp </td>
+				<td id="telppembelibca" colspan="2"></td>
+			</tr>
+			<tr>
+				<td colspan="3"> ---------------Pembelian---------------- </td>
+			</tr>
+			<tr>
+				<th>Nama </th>
+				<th> Jumlah </th>
+				<th> Harga </th>
+			</tr>
+			<tr>
+				<td id="notanamabarangbca"> 1.  </td>
+				<td id="notajumlahbarangbca"> 0 </td>
+				<td id="notahargabarangbca"> Rp. 000 </td>
+			</tr>
+			<tr>
+				<th colspan="2" style="text-align: left;"> Total Harga </th>
+				<td id="notatotalbarangbca"> Rp. 000 </td>
+			</tr>
+			<tr>
+				<th colspan="3" style="text-align: left;"> Kartu BCA  </th>
+			</tr>
+			<tr>
+				<th colspan="2" style="text-align: left;"> Pajak </th>
+				<td id="pajakbca"> Rp. 000 </td>
+			</tr>
+			<tr>
+				<th colspan="2" style="text-align: left;"> Diskon </th>
+				<td id="diskonbca"> ... </td>
+			</tr>
+			<tr>
+				<th colspan="2" style="text-align: left;"> Total Pembayaran </th>
+				<td id="notatotalbca"> Rp. 000 </td>
+			</tr>
+		</table>
+		<button onclick="cetak()"> Nota Pembayaran </button>
+	</div>
+
+	<div id="notabri" style="display: none; font-weight: bold;font-size: 20px;  " >
+		<h2 > TOKO UTM </h2>
+		<table style="border: 1px solid black; background-color: rgb(206, 220, 224); ">
+			<tr>
+				<td> Tanggal </td>
+				<td id="tanggalpembelibri" colspan="2"></td>
+			</tr>
+			<tr>
+				<td> Nama </td>
+				<td id="namapembelibri" colspan="2"></td>
+			</tr>
+			<tr>
+				<td> Alamat </td>
+				<td id="alamatpembelibri" colspan="2"></td>
+			</tr>
+			<tr>
+				<td> No Telp </td>
+				<td id="telppembelibri" colspan="2"></td>
+			</tr>
+			<tr>
+				<td colspan="3"> ---------------Pembelian---------------- </td>
+			</tr>
+			<tr>
+				<th>Nama </th>
+				<th> Jumlah </th>
+				<th> Harga </th>
+			</tr>
+			<tr>
+				<td id="notanamabarangbri"> 1.  </td>
+				<td id="notajumlahbarangbri"> 0 </td>
+				<td id="notahargabarangbri"> Rp. 000 </td>
+			</tr>
+			<tr>
+				<th colspan="2" style="text-align: left;"> Total Harga </th>
+				<td id="notatotalbarangbri"> Rp. 000 </td>
+			</tr>
+			<tr>
+				<th colspan="3" style="text-align: left;"> Kartu BRI </th>
+			</tr>
+			<tr>
+				<th colspan="2" style="text-align: left;"> Pajak </th>
+				<td id="pajakbri"> ... </td>
+			</tr>
+			<tr>
+				<th colspan="2" style="text-align: left;"> Diskon </th>
+				<td id="diskonbri"> ... </td>
+			</tr>
+			<tr>
+				<th colspan="2" style="text-align: left;"> Total Pembayaran </th>
+				<td id="notatotalbri"> Rp. 000 </td>
+			</tr>
+		</table>
+		<button onclick="cetak()"> Nota Pembayaran </button>
+	</div>
+
+	<div id="notamandiri" style="display: none; font-weight: bold;font-size: 20px;">
+		<h2> TOKO UTM </h2>
+		<table style="border: 1px solid black; background-color: rgb(206, 220, 224);">
+			<tr>
+				<td> Tanggal </td>
+				<td id="tanggalpembelimandiri" colspan="2"></td>
+			</tr>
+			<tr>
+				<td> Nama </td>
+				<td id="namapembelimandiri" colspan="2"></td>
+			</tr>
+			<tr>
+				<td> Alamat </td>
+				<td id="alamatpembelimandiri" colspan="2"></td>
+			</tr>
+			<tr>
+				<td> No Telp </td>
+				<td id="telppembelimandiri" colspan="2"></td>
+			</tr>
+			<tr>
+				<td colspan="3"> ---------------Pembelian---------------- </td>
+			</tr>
+			<tr>
+				<th>Nama </th>
+				<th> Jumlah </th>
+				<th> Harga </th>
+			</tr>
+			<tr>
+				<td id="notanamabarangkartumandiri"> 1.  </td>
+				<td id="notajumlahbarangkartumandiri"> 0 </td>
+				<td id="notahargabarangkartumandiri"> Rp. 000 </td>
+			</tr>
+			<tr>
+				<th colspan="2" style="text-align: left;"> Total Harga </th>
+				<td id="notatotalbarangkartumandiri"> Rp. 000 </td>
+			</tr>
+			<tr>
+				<th colspan="3" style="text-align: left;"> Kartu MANDIRI </th>
+			</tr>
+			<tr>
+				<th colspan="2" style="text-align: left;"> Pajak </th>
+				<td id="pajakmandiri"> ... </td>
+			</tr>
+			<tr>
+				<th colspan="2" style="text-align: left;"> Diskon </th>
+				<td id="diskonmandiri"> ... </td>
+			</tr>
+			<tr>
+				<th colspan="2" style="text-align: left;"> Total Pembayaran </th>
+				<td id="notatotalmandiri"> Rp. 000 </td>
+			</tr>
+		</table>
+		<button onclick="cetak()"> Nota Pembayaran </button>
+	</div>
+
+
+
+	<div id="kasir" style="display: none; background-color: rgb(206, 220, 224);">
+		<table>
+			<tr>
+				<td colspan="2"> <h2 style="text-align: center; "> Pembayaran Cash </h2> </td>
+			</tr>
+			<tr>
+				<td> <label for="barang" style="font-weight: bold; font-size: 30px;"> Nama Barang </lebel></td>
+				<td> <input type="text" name="barang" id="barang" style="width: 200px; height: 30px; font-size: 28px; font-weight: bold;"></td>
+			</tr>
+			<tr>
+				<td><label for="jumlah" style="font-weight: bold; font-size: 30px;"> jumlah Barang </lebel></td>
+				<td> <input type="number" name="jumlah" id="jumlah" value="1" style="width: 200px; height: 30px; font-size: 28px; font-weight: bold;"></td>
+			</tr>
+			<tr>
+				<td><label for="diskon" style="font-weight: bold; font-size: 30px;"> Diskon </lebel></td>
+				<td> <input type="number" name="diskon" id="diskon" style="width: 200px; height: 30px; font-size: 28px; font-weight: bold;"></td>
+			</tr>
+			<tr>
+				<td> <label for="uang" style="font-weight: bold; font-size: 30px;"> Pembayaran </lebel></td>
+				<td><input type="number" name="uang" id="uang" style="width: 200px; height: 30px; font-size: 28px; font-weight: bold;"></td>
+			</tr>
+			<tr id="smpn">
+				<td colspan="2"> <button type="button" onclick="hasil()" style="width: 100%; height: 30px; font-size: 22px; font-weight: bold; background-color: rgb(152, 201, 201); "> Simpan </button></td>
+			</tr>
+			<tr id="totalnotacash">
+				<td ><button  type="button" onclick="total()" style="width: 100%; height: 30px; font-size: 22px; font-weight: bold; background-color: rgb(152, 201, 201);"> Total </button></td>
+				<td> <button type="button" onclick="cetaknota()" style="width: 100%; height: 30px; font-size: 22px; font-weight: bold; background-color: rgb(152, 201, 201);"> Cetak Nota </button></td>
+			</tr>
+		</table>
+		<br>
+		<table style="font-size: 28px; font-weight: bold;">
+			<tr>
+				<th> Nama </th>
+				<th> Jumlah </th>
+				<th> Harga </th>
+			</tr>
+			<tr>
+				<td id="namabarang"> 1.  </td>
+				<td id="jumlahbarang"> 0 </td>
+				<td id="hargabarang"> Rp. 000 </td>
+			</tr>
+			<tr>
+				<th colspan="2" style="text-align: left;"> Total Harga </th>
+				<td id="totalbarang"> Rp. 000 </td>
+			</tr>
+			<tr>
+				<th colspan="2" style="text-align: left; text-decoration: underline;"> Pembayaran </th>
+				<td id="uangplg" style="text-decoration: underline;"> Rp. 000 </td>
+			</tr>
+			<tr>
+				<th colspan="2" style="text-align: left; text-decoration: underline;"> Potongan </th>
+				<td id="diskonh" style="text-decoration: underline;"> Rp. 000 </td>
+			</tr>
+			<tr>
+				<th colspan="2" style="text-align: left; text-decoration: underline;"> Kembalian </th>
+				<td id="kembalian" style="text-decoration: underline;"> Rp. 000</td>
+			</tr>
+		</table>
+	</div>
+
+	<div id="nota" style="display: none;">
+		<h2> TOKO UTM </h2>
+		<table style="border: 1px solid black; background-color: rgb(206, 220, 224);">
+			<tr>
+				<td> Tanggal </td>
+				<td id="tanggalpembeli" colspan="2"></td>
+			</tr>
+			<tr>
+				<td> Nama </td>
+				<td id="namapembeli" colspan="2"></td>
+			</tr>
+			<tr>
+				<td> Alamat </td>
+				<td id="alamatpembeli" colspan="2"></td>
+			</tr>
+			<tr>
+				<td> No Telp </td>
+				<td id="telppembeli" colspan="2"></td>
+			</tr>
+			<tr>
+				<td colspan="3"> ------------------Pembelian------------------- </td>
+			</tr>
+			<tr>
+				<th> Nama </th>
+				<th> Jumlah </th>
+				<th> Harga </th>
+			</tr>
+			<tr>
+				<td id="notanamabarang"> 1.  </td>
+				<td id="notajumlahbarang"> 0 </td>
+				<td id="notahargabarang"> Rp. 000 </td>
+			</tr>
+			<tr>
+				<th colspan="2" style="text-align: left;"> Total Harga </th>
+				<td id="notatotalbarang"> Rp. 000 </td>
+			</tr>
+			<tr>
+				<th colspan="2" style="text-align: left; text-decoration: underline;"> Pembayaran </th>
+				<td id="notauangplg" style="text-decoration: underline;"> Rp. 000 </td>
+			</tr>
+			<tr>
+				<th colspan="2" style="text-align: left; text-decoration: underline;"> Potongan </th>
+				<td id="diskonp" style="text-decoration: underline;"> Rp. 000 </td>
+			</tr>
+			<tr>
+				<th colspan="2" style="text-align: left; text-decoration: underline;"> Kembalian </th>
+				<td id="notakembalian" style="text-decoration: underline;"> Rp. 000</td>
+			</tr>
+			<tr>
+				<td colspan="3"> Terimakasih sudah berbelanja di toko kami </td>
+			</tr>
+		</table>
+		<button type="button" onclick="cetak()">Nota Pembayaran</button>
+	</div>
+	<script type="text/javascript" src="js/js.js"></script>
+</body>
+</html>
+
+
